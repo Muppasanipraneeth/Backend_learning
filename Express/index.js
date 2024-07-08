@@ -1,33 +1,25 @@
-let express=require("express");
-let app=express();
-let port=3000;
-// console.dir(app);
+const express=require("express");
+const app=express();
+let port =8000;
+
 app.listen(port,(err)=>{
-if(err){
-    console.log(err);
-}else{
-    console.log(" it is listening");
-}
-});
-// app.use((req,res)=>{
-//     console.log(" request recived");
-//     let code="<h1>hello praneeth is here</h1>";
-//     res.send(code);
-// })
-app.get("/",(req,res)=>{
-    res.send("you have contacted root path");
-});
-// app.get('/apple',(req,res)=>{
-//     res.send("you have contacted apple path");
-// })
-// app.get('/orange',(req,res)=>{
-//     res.send(" you have contacted orange path");
-// })
-// app.get('*',(req,res)=>{
-//     res.send(" you reached worng page");
-// })
-app.get('/:username/:id',(req,res)=>{
-    let {username,id}=req.params;
-    // console.log(req.params);// this path parameter
-    res.send(` welcome to the webpage @${username}`);
+    if(err){
+        console.log(" there is an errror");
+    }else{
+        console.log(" this port is listening");
+    }
+})
+app.get("/health-checkup",(req,res)=>{
+    const username=req.headers.username;
+    const password=req.headers.password;
+    const userid=req.query.kidneyid;
+    if(!(username==="praneeth" && password==="pass")){
+        res.status(404).json({"msg":"something is worng please check"});
+        return ;
+    }
+    if(!(userid==1 || userid==2)){
+        res.status(404).json({"msg":"something is worng with the input"});
+        return ;
+    }
+    res.json({'msg':"your kidney looks fine you take rest"});
 })
