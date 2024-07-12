@@ -4,3 +4,6 @@ h1{
 .post{
     background-color: bisque;
 }
+a{
+    text-decoration-line: none;
+}

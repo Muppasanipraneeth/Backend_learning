@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>Here is your post buddy</h1>
+
+    <% if (post) { %>
+        <h3>Your ID: <%= post.id %></h3>
+        <div class="post">
+            <h4><%= post.name %></h4>
+            <h4><%= post.content %></h4>
+        </div>
+    <% } else { %>
+        <p>No post found.</p>
+    <% } %>
+</body>
+
+</html>

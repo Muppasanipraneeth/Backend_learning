@@ -6,10 +6,11 @@
     <title>Document</title>
 </head>
 <body>
+    <h1> edit your content</h1>
+    <h3> name:<%= post.name %></h3>
+    <h3>id no:<%= post.id %></h3>
     <form method="post" action="/post">
-        <input type="text" name="name" placeholder="Enter your name"><br>
-        <textarea name="content" id="textarea" placeholder="Enter your content"></textarea><br>
-        <br>
+        <textarea name="" id=""><%= post.content %></textarea>
         <button type="submit"> submit</button>
     </form>
 </body>
