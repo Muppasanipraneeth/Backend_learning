@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>Enter the details for conforming to delete the data<h4>
+       
+    <form method="post" action="http://localhost:8000/checking/<%=id %>">
+        <h5> your id :<%=id %></h5>
+        <input type="hidden" name="id" value="<%= id %>">
+        <input type="text" name="user" placeholder="enter your user name" >
+        <br>
+        <input type="password" name="password" placeholder="enter your correct password">
+        <br>
+        <button type="submit">confrim</button>
+    </form>
+    
+</body>
+</html>

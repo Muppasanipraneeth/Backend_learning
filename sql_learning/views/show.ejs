@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        table,th,td{
+            border: 1px,solid,black;
+        }
+    </style>
+    <div>
+        <h4> click her to add new user</h4>
+        <form method=""  action="http://localhost:8000/newdata">
+            <button type="submit"> Add</button>
+        </form>
+    </div>
+
+    <table>
+     <tr><th>id</th>
+        <th>name</th>
+        <th>username</th>
+        <th>password</th>
+        <th>edit you name</th>
+        <th> delete data</th>
+     </tr>
+ 
+        <% for(res of result){ %>
+            <tr><td><%=res.id%></td>
+                <td> <%=  res.name%></td>
+                <td> <%= res.email %></td>
+                <td> <%=res.password%></td>
+                <td> <form method="get" action="http://localhost:8000/user/<%=res.id %>/edit">
+                    <button> edit</button>
+                </form></td>
+            <td>
+                <form  method="get" action="/checking/<%=res.id %>">
+                    <button type="submit"> delete</button>
+                </form>
+            </td>
+            </tr>
+        <%} %>
+
+    </table>
+</body>
+</html>
