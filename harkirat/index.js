@@ -1,26 +1,48 @@
 const express=require("express");
 const app=express();
-let port =8080;
-app.listen(port,(err)=>{
-if(err){
-    console.log(" there is an error");
-}else{
-    console.log(" this port is working");
+let port =3000;
+function ticketchecker(req,res,err){
+    const ticket=req.query.ticket;
+    if(ticket==="free"){
+        next();
+    }else{
+        res.status(403).json({"msg":" acessed denied"});
+    }
+
 }
-    
+function oldage(req,res,next){
+    if(req.query.age>14){
+        next();
+    }else{
+        res.json({"msg":" sorry for the inconvinenice"});
+    }
+}
+function checkage(age){
+    if(age>18){
+        return true;
+    }else{
+        return false;
+    }
+}
+app.use(oldage);
+app.listen(port,(err)=>{
+    if(err){
+console.log(" there is an error");
+    }else{
+console.log(" this app is listening ");
+    }
+});
+app.get("/user1",(req,res)=>{
+    // if(checkage(req.query.age)){
+    //     res.json({"msg":"you rode the first ride here "});
+    // }else{
+    //     res.json({"msg":"sorry for the inconvenience"});
+    // }
+res.send(" here ther you to ride");
+});
+app.get("/user2",(req,res)=>{
+    res.send(" you rode the first ride");
+});
+app.get("/user3",(req,res)=>{
+    res.send(" you rode the first ride");
 })
-
-app.use(express.json());
-
-app.post("/health-checkup",(req,res)=>{
-const kidney=req.body.kidneys;
-const length=kidney.length;
-res.send(" you have "+ length +"kidneys");
-});
-// if the user does not enter the correct input 
-//it gives an error so to overcome this we use inbuilt
-app.use((err,req,res,next)=>{// the express will check if any error occures then it will check for the 4 parameter with err in it
-res.json({"msg":"sorry for the inconvenience server crashed"})
-
-});
-

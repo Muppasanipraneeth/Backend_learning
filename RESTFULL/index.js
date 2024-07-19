@@ -1,13 +1,14 @@
 
 const express = require("express");
 const app = express();
-const path = require("path");
-const { v4: uuidv4 } = require('uuid');
+const path = require("path");//for the path  files where we can get  the acess from the diffrenet folder of parent
+const { v4: uuidv4 } = require('uuid');//this is for the getting random ids
+const methodoveride=require("method-override");// the froms has only two methods where one is post and the get to get more like delete patch we use this
 
 
-
+app.use(methodoveride("_method"));
 const port = 8080;
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));// is middleware in an Express.js app that parses incoming requests with URL-encoded payloads, supporting rich objects and arrays
 // Set view engine and views directory
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -49,14 +50,12 @@ app.post("/post",(req,res)=>{
     // console.log(req.body);
     let { name ,content}=req.body;
     let id=uuidv4();
-    console.log(id);
     posts.push({id,name , content});
     res.redirect("/post");
     console.log(posts);
 })
 app.get("/post/:id",(req,res)=>{
 let id =req.params.id;
-console.log(id);
 let post=posts.find((p)=>id ===p.id);
 if(post){
 console.log(post);
@@ -73,7 +72,7 @@ app.patch("/post/:id",(req,res)=>{
     post.content=newcontent;
     
     console.log(newcontent);
-    res.send(" this is working ")
+res.redirect("/post");
 })
 app.get("/post/:id/edit",(req,res)=>{
     let id =req.params.id;
@@ -88,5 +87,12 @@ if(post){
     res.send(" there is an error");
 
 }
+
+});
+app.delete("/post/:id",(req,res)=>{
+    let id =req.params.id;
+     posts=posts.filter((p)=>id !=p.id);
+     res.redirect("/post");
+    // res.send(" this post is sloved");
 
 });

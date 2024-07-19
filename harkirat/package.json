@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "praneeth",
   "license": "ISC",
-  "description": "",
+  "description": "- install  the npm init -y\r - install the npm install express\r - to run the express server we have use the nodemon index.js\r - code \r ` const express = require(\"express\");\r const app = express();\r let port = 3000;",
   "dependencies": {
     "express": "^4.19.2",
     "zod": "^3.23.8"
-  }
+  },
+  "devDependencies": {}
 }
